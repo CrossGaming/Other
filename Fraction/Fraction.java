@@ -3,37 +3,37 @@ import java.util.*;
 import java.math.*;
 public class Fraction
 {
-	private int first;
-	private int last;
-	public Fraction(int f, int l)
+	private int numerator;
+	private int denominator;
+	public Fraction(int n, int d)
 	{
-		this.first = f;
-		this.last = l;
+		this.numerator = n;
+		this.denominator = d;
 	}
 	public int getNumerator()
 	{
-		return this.first;
+		return this.numerator;
 	}
 	public void setNumerator(int n)
 	{
-		this.first = n;
+		this.numerator = n;
 	}
 	public int getDenominator()
 	{
-		return this.last;
+		return this.denominator;
 	}
 	public void setDenominator(int d)
 	{
-		this.last = d;
+		this.denominator = d;
 	}
 	public String toString()
 	{
-		return this.first + "/" + this.last;
+		return this.numerator + "/" + this.denominator;
 	}
 	public boolean equals(Object obj)
 	{
 		Fraction otherFraction = (Fraction)obj;
-		if (this.first == otherFraction.first && this.last == otherFraction.last)
+		if (this.numerator == otherFraction.numerator && this.denominator == otherFraction.denominator)
 		{
 			return true;
 		}
@@ -41,7 +41,7 @@ public class Fraction
 	}
 	public double getValue()
 	{
-		return this.first/this.last;
+		return this.numerator/this.denominator;
 	}
 	public Fraction add(int a)
 	{
@@ -81,6 +81,6 @@ public class Fraction
 	}
 	public double valueOf(Fraction f)
 	{
-		return f.first/f.last;
+		return f.numerator/f.denominator;
 	}
 }
