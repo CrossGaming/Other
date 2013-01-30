@@ -1,6 +1,9 @@
 package misc;
-import java.util.*;
-import java.math.*;
+
+//Not needed silleh and i dun like warnings
+//import java.util.*;
+//import java.math.*;
+
 public class Fraction
 {
 	private int numerator;
@@ -28,7 +31,20 @@ public class Fraction
 	}
 	public String toString()
 	{
-		return this.numerator + "/" + this.denominator;
+		return Integer.toString(this.numerator) + "/" + Integer.toString(this.denominator);
+	}
+	public Fraction parseFrac(String fract)
+	{
+		String[] fparts = {"",""};
+		try
+		{
+			fparts[0] = fract.split("/")[0];
+			fparts[1] = fract.split("/")[1];
+		}
+		catch(Exception ex) { }
+		int num = Integer.parseInt(fparts[0]);
+		int den = Integer.parseInt(fparts[1]);
+		return new Fraction(num,den);
 	}
 	public boolean equals(Object obj)
 	{
@@ -45,15 +61,22 @@ public class Fraction
 	}
 	public int getLCD(Fraction f)//Finds the least common denominator
 	{
-		
+		return getLCM(this.denominator, f.denominator);
 	}
 	public static int getLCM(int a, int b)//Finds the least common multiple, for finding common denominators
 	{
-		
+		return a*b/getGCD(a,b);
 	}
 	public static int getGCD(int a, int b)//Finds the greatest common devisor, for simplifying purposes
 	{
-		
+		int temp; 
+		while (b != 0)
+		{ 
+			temp = b; 
+			b = a%temp; 
+			a = temp; 
+		} 
+		return a; 
 	}
 	public Fraction add(int a)
 	{
