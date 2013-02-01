@@ -15,7 +15,11 @@ public class Fraction
 	}
 	public static Fraction convertToFraction(double d)
 	{
-		Double d2 = (Double) d; 
+		Double d2 = (Double) d;
+		if(d2.isInfinite())
+		{
+			return new Fraction(0,0);//INFINITY BRO
+		}
 		String temp = d2.toString();
 		char[] lol = temp.toCharArray();
 		boolean pastd = false;
@@ -46,6 +50,19 @@ public class Fraction
 		}
 		catch(Exception ex) { }
 		return new Fraction(num,den);
+	}
+	public int numeratorLength()
+	{
+		return Integer.toString(this.numerator).length();
+	}
+	public int denominatorLength()
+	{
+		return Integer.toString(this.denominator).length();
+	}
+	public int[] length()
+	{
+		int[] len = {numeratorLength(),denominatorLength()};
+		return len;
 	}
 	public int getNumerator()
 	{
