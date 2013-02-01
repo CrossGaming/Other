@@ -13,6 +13,40 @@ public class Fraction
 		this.numerator = n;
 		this.denominator = d;
 	}
+	public static Fraction convertToFraction(double d)
+	{
+		Double d2 = (Double) d; 
+		String temp = d2.toString();
+		char[] lol = temp.toCharArray();
+		boolean pastd = false;
+		int den = 1;
+		for(int i = 0; i < lol.length; i++)
+		{
+			if(pastd)
+			{
+				den = den * 10;;
+			}
+			if(lol[i] == '.')
+			{
+				pastd = true;
+			}
+		}
+		temp = temp.replaceAll( "[^\\d]", "" );
+		int num = (int) Integer.parseInt(temp);
+		return new Fraction(num, den).simplify();
+	}
+	public static Fraction parseFrac(String fract)
+	{
+		int num = 1;
+		int den = 1;
+		try
+		{
+			num = Integer.parseInt(fract.split("/")[0]);
+			den = Integer.parseInt(fract.split("/")[1]);
+		}
+		catch(Exception ex) { }
+		return new Fraction(num,den);
+	}
 	public int getNumerator()
 	{
 		return this.numerator;
@@ -32,19 +66,6 @@ public class Fraction
 	public String toString()
 	{
 		return Integer.toString(this.numerator) + "/" + Integer.toString(this.denominator);
-	}
-	public Fraction parseFrac(String fract)
-	{
-		String[] fparts = {"",""};
-		try
-		{
-			fparts[0] = fract.split("/")[0];
-			fparts[1] = fract.split("/")[1];
-		}
-		catch(Exception ex) { }
-		int num = Integer.parseInt(fparts[0]);
-		int den = Integer.parseInt(fparts[1]);
-		return new Fraction(num,den);
 	}
 	public boolean equals(Object obj)
 	{
